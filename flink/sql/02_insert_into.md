@@ -151,3 +151,49 @@ https://flink-packages.org/packages/flink-faker
 https://github.com/knaufk/flink-faker/
 直接下载jar
 https://github.com/knaufk/flink-faker/releases
+
+
+
+## 停止作业
+
+由于 faker connector 会持续不断地生成数据，我们需要手动停止作业。以下是几种停止作业的方法：
+
+### 方法1：通过 Flink Web UI 停止（推荐）
+
+1. 访问 Flink Web UI: http://localhost:8081
+2. 点击 "Running Jobs" 查看所有正在运行的作业
+3. 找到对应的作业
+4. 点击作业右侧的 "Cancel" 按钮停止作业
+
+这种方式的优点是：
+- 可视化界面，操作直观
+- 可以看到作业的详细信息和状态
+- 可以选择性地停止特定作业
+
+### 方法2：通过 SQL Client 停止
+
+在 Flink SQL Client 中执行以下命令：
+
+```sql
+-- 查看所有正在运行的作业
+SHOW JOBS;
+
+-- 取消指定作业
+CANCEL JOB '<job_id>';
+```
+
+### 方法3：通过命令行停止所有作业
+
+如果想停止所有 Flink 作业，可以直接停止或重启整个 Flink 集群：
+
+```bash
+# 停止集群
+docker-compose stop
+
+# 或者重启集群
+docker-compose down
+docker-compose up -d
+```
+
+注意：方法3会停止所有正在运行的作业，如果有其他重要作业正在运行，请使用方法1或方法2来选择性地停止特定作业。
+

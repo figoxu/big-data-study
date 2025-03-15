@@ -1,3 +1,6 @@
+DROP TABLE IF EXISTS server_logs;
+DROP TABLE IF EXISTS client_errors;
+
 CREATE TABLE server_logs ( 
     client_ip STRING,
     client_identity STRING, 
@@ -26,7 +29,9 @@ CREATE TABLE client_errors (
   size INT
 )
 WITH (
-  'connector' = 'blackhole'
+    'connector' = 'filesystem',
+    'path' = '/opt/table/client_errors',
+    'format' = 'json'
 );
 
 INSERT INTO client_errors

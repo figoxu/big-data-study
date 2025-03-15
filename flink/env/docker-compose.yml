@@ -14,6 +14,7 @@ services:
     volumes:
       - ../sql:/opt/sql
       - ../reference/libs/flink-faker-0.5.3.jar:/opt/flink/lib/flink-faker-0.5.3.jar
+      - ../reference/table:/opt/table
   
   taskmanager:
     image: apache/flink:1.18.1
@@ -29,3 +30,4 @@ services:
         state.checkpoints.dir: file:///tmp/flink-checkpoints
     volumes:
       - ../reference/libs/flink-faker-0.5.3.jar:/opt/flink/lib/flink-faker-0.5.3.jar
+      - ../reference/table:/opt/table
