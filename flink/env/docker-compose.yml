@@ -13,6 +13,7 @@ services:
         state.checkpoints.dir: file:///tmp/flink-checkpoints
     volumes:
       - ../sql:/opt/sql
+      - ../reference/libs/flink-faker-0.5.3.jar:/opt/flink/lib/flink-faker-0.5.3.jar
   
   taskmanager:
     image: apache/flink:1.18.1
@@ -26,3 +27,5 @@ services:
         taskmanager.numberOfTaskSlots: 2
         state.backend: filesystem
         state.checkpoints.dir: file:///tmp/flink-checkpoints
+    volumes:
+      - ../reference/libs/flink-faker-0.5.3.jar:/opt/flink/lib/flink-faker-0.5.3.jar
